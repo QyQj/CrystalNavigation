@@ -1,4 +1,4 @@
-﻿namespace Ejy.Navigation.Models.DataModels
+﻿namespace CrystalNavigation.Models.DataModels
 {
     public class BookmarkGroup
     {

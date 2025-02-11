@@ -1,6 +1,6 @@
-﻿using Ejy.Navigation.Models.DataModels;
+﻿using CrystalNavigation.Models.DataModels;
 
-namespace Ejy.Navigation.Models.ViewModels
+namespace CrystalNavigation.Models.ViewModels
 {
     public class HomeModel
     {

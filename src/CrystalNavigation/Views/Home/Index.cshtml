@@ -1,11 +1,11 @@
-﻿@model Ejy.Navigation.Models.ViewModels.HomeModel
+﻿@model HomeModel
 @{
-    ViewData["Title"] = "Ejy's Navigation\ud83d\udd2e";
+    ViewData["Title"] = Model.BookmarkConfig.Title;
 }
 
 <div class="container">
     <header>
-        <h1 class="sketch-title">Ejy's Navigation 🔮</h1>
+        <h1 class="sketch-title">@Model.BookmarkConfig.Slogan</h1>
 
         <div class="search-box">
             <form action="https://www.google.com/search" method="get" target="_blank">

@@ -1,6 +1,6 @@
-using Ejy.Navigation.Models.DataModels;
+using CrystalNavigation.Models.DataModels;
 
-namespace Ejy.Navigation
+namespace CrystalNavigation
 {
     public class Program
     {
