@@ -38,4 +38,4 @@ All of the configuration stored at `BookmarkConfig` section in appsettings.json
 - **CustomIconUrl** Url for custom icon
 - **Note** `Note` will display after you click the bookmark button
  
-## 🐢Online Config Is Comming Soon
+## 🐢Online config and localization is comming soon
