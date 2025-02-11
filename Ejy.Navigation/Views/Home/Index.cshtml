@@ -1,0 +1,83 @@
+﻿@model Ejy.Navigation.Models.ViewModels.HomeModel
+@{
+    ViewData["Title"] = "Ejy's Navigation\ud83d\udd2e";
+}
+
+<div class="container">
+    <header>
+        <h1 class="sketch-title">Ejy's Navigation 🔮</h1>
+
+        <div class="search-box">
+            <form action="https://www.google.com/search" method="get" target="_blank">
+                <input type="text" name="q" placeholder="Google搜索...">
+                <button type="submit">🔍 搜索</button>
+            </form>
+        </div>
+    </header>
+
+    <main>
+        @foreach (var group in Model.BookmarkConfig.BookmarkGroups)
+        {
+            <section class="category tools">
+                <h2 class="sketch-heading">@group.Name</h2>
+                <div class="links-grid">
+                    @foreach (var bookmark in group.Bookmarks)
+                    {
+                        <div class="tool-item">
+                            <a href="javascript:void(0)" class="tool-link" data-url="@bookmark.Url">
+                                @bookmark.Name
+                                @if (!string.IsNullOrWhiteSpace(bookmark.Emoji))
+                                {
+                                    <span class="tool-emoji">
+
+                                        @bookmark.Emoji
+                                    </span>
+                                }
+                                else
+                                {
+                                    <img class="tool-emoji" src="@bookmark.IconUrl(Model.BookmarkConfig.IconApiUrl)" />
+                                }
+                            </a>
+                            <div class="sticky-note" style="display: none;">
+                                <div class="note-content">
+                                    <h3>@bookmark.Name</h3>
+                                    <p>@bookmark.Note</p>
+                                    <div class="note-footer">
+                                        <a href="@bookmark.Url" target="_blank" class="visit-btn">访问网站</a>
+                                        <button class="close-btn">关闭</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </section>
+        }
+    </main>
+</div>
+<style>
+    @@media (max-width: 768px) {
+    .tool-link {
+        padding: 1rem 1.5rem;  /* 增加一点内边距 */
+        font-size: 1.2rem;  /* 调整字体大小，0.9rem太小了 */
+    }
+
+    .tool-emoji {
+        font-size: 1.5em;  /* 调整emoji大小 */
+    }
+
+    .sticky-note {
+        width: 90%;  /* 改为百分比宽度 */
+        padding: 20px;  /* 减小内边距 */
+    }
+
+    .note-content h3 {
+        font-size: 1.8rem;  /* 调整标题大小 */
+    }
+
+    .note-content p {
+        font-size: 1.3rem;  /* 调整正文大小 */
+    }
+    }
+</style>

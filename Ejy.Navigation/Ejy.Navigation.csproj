@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Entities\" />
+    <Folder Include="Models\DatabaseEntities\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\home.css" />
+  </ItemGroup>
+
+</Project>
