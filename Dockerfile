@@ -11,16 +11,19 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Ejy.Navigation/Ejy.Navigation.csproj", "Ejy.Navigation/"]
-RUN dotnet restore "./Ejy.Navigation/Ejy.Navigation.csproj"
-COPY . .
+# Auto copy to prevent 996
+COPY ./src/**/*.csproj ./
+RUN for file in $(ls *.csproj); do mkdir -p ./${file%.*}/ && mv $file ./${file%.*}/; done
+
+RUN dotnet restore "Ejy.Navigation/Ejy.Navigation.csproj"
+COPY ./src .
 WORKDIR "/src/Ejy.Navigation"
-RUN dotnet build "./Ejy.Navigation.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "Ejy.Navigation.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # 此阶段用于发布要复制到最终阶段的服务项目
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Ejy.Navigation.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Ejy.Navigation.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # 此阶段在生产中使用，或在常规模式下从 VS 运行时使用(在不使用调试配置时为默认值)
 FROM base AS final
